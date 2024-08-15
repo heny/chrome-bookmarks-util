@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0 20px;
+  color: #3498db;
+}
+body {
+  width: 200px;
+  padding: 10px;
+}
+button {
+  border: 1px solid #3498db;
+  padding: 5px 10px;
+  background-color: white;
+  color: #3498db;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.operate-box {
+  margin: 10px 0;
+}
+.operate-box button {
+  margin-right: 10px;
+}
+#ipt-upload {
+  width: 100%;
+  padding: 5px;
+  height: 30px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #3498db;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}

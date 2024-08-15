@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "获取书签",
+  "version": "1.0",
+  "permissions": ["bookmarks"],
+  "icons": {
+    "48": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
