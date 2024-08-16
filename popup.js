@@ -1,3 +1,17 @@
+function uploadJson (content, href) {
+  const bookmarksData = JSON.stringify(content, null, 2)
+  const blob = new Blob([bookmarksData], { type: 'application/json' })
+
+  const formData = new FormData()
+  formData.append('file', blob, 'bookmarks.json')
+  formData.append('name', 'bookmarks.json')
+  formData.append('dir', '')
+
+  fetch(href, { method: 'POST', body: formData, })
+    .then(res => res.json())
+    .finally(() => alert('书签已上传！'))
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   chrome.bookmarks.getTree((bookmarks) => {
     const btn = document.getElementById('copyBookmarks')
@@ -14,23 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     upload.addEventListener('click', async () => {
-      const content = prompt('请输入上传地址')
-      if (content === '' || !content.startsWith('http')) {
+      const href = prompt('请输入上传地址')
+      if (href === '' || !href.startsWith('http')) {
         alert('请输入正确的上传地址')
         return
       }
-
-      const bookmarksData = JSON.stringify(bookmarks, null, 2)
-      const blob = new Blob([bookmarksData], { type: 'application/json' })
-
-      const formData = new FormData()
-      formData.append('file', blob, 'bookmarks.json')
-
-      console.log('hhh - formData', formData)
-      fetch(content, { method: 'POST', body: formData, })
-        .then(res => res.json())
-        .then(() => alert('上传成功'))
-        .catch(() => alert('上传失败'))
+      uploadJson(bookmarks, href)
     });
   });
 });
