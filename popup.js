@@ -1,13 +1,9 @@
 function uploadJson (content, href) {
-  const bookmarksData = JSON.stringify(content, null, 2)
-  const blob = new Blob([bookmarksData], { type: 'application/json' })
-
-  const formData = new FormData()
-  formData.append('file', blob, 'bookmarks.json')
-  formData.append('name', 'bookmarks.json')
-  formData.append('dir', '')
-
-  fetch(href, { method: 'POST', body: formData, })
+  fetch(href, {
+    method: 'POST', body: JSON.stringify(
+      { data: content, filePath: 'bookmarks.json' },
+      null, 2)
+  })
     .then(res => res.json())
     .finally(() => alert('书签已上传！'))
 }
@@ -33,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('请输入正确的上传地址')
         return
       }
+      // 如果每次都提醒，可以注释上面的直接填写这块，并重新导入扩展
+      // const href = 'URL_ADDRESS'
       uploadJson(bookmarks, href)
     });
   });
