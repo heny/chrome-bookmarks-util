@@ -24,13 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     upload.addEventListener('click', async () => {
-      const href = prompt('请输入上传地址')
-      if (href === '' || !href.startsWith('http')) {
-        alert('请输入正确的上传地址')
-        return
-      }
+      // const href = prompt('请输入上传地址')
+      // if (href === '' || !href.startsWith('http')) {
+      //   alert('请输入正确的上传地址')
+      //   return
+      // }
       // 如果每次都提醒，可以注释上面的直接填写这块，并重新导入扩展
       // const href = 'URL_ADDRESS'
+      const href = 'https://json-service.hrhe.cn/update-file'
       uploadJson(bookmarks, href)
     });
   });
