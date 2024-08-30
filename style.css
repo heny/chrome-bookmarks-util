@@ -38,3 +38,10 @@ button {
   border-radius: 5px;
   outline: none;
 }
+
+button:disabled {
+  background-color: #ccc;
+  color: #fff;
+  border-color: #ccc;
+  cursor: not-allowed;
+}

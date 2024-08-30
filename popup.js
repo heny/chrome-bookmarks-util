@@ -1,18 +1,28 @@
+const btn = document.getElementById('copyBookmarks')
+const upload = document.getElementById('uploadBookmarks')
+
 function uploadJson (content, href) {
+  upload.innerHTML = '上传中...'
+  upload.disabled = true
+
   fetch(href, {
     method: 'POST', body: JSON.stringify(
       { data: content, filePath: 'bookmarks.json' },
       null, 2)
   })
     .then(res => res.json())
-    .finally(() => alert('书签已上传！'))
+    .finally(() => {
+      upload.innerHTML = '上传成功'
+      setTimeout(() => {
+        upload.innerHTML = '上传'
+        upload.disabled = false
+      }, 3000)
+      alert('书签已上传！')
+    })
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   chrome.bookmarks.getTree((bookmarks) => {
-    const btn = document.getElementById('copyBookmarks')
-    const upload = document.getElementById('uploadBookmarks')
-
     btn.addEventListener('click', () => {
       navigator.clipboard.writeText(JSON.stringify(bookmarks, null, 2))
         .then(() => {
